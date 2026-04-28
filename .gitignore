@@ -1,0 +1,16 @@
+.DS_Store
+*.pyc
+__pycache__/
+.vscode/
+.idea/
+node_modules/
+.env
+*.log
+
+# 강사 프로필 원본 (개인정보 포함 - 공개 repo에 올리지 않음)
+서울*프로필*/
+서울*프로필 /
+
+# AITY 매뉴얼 PDF 원본 (assets/images/manual/ 캡처본만 사용)
+AITY 사용 메뉴얼/
+

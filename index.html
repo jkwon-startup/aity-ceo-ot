@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>AI Native CEO 강사 OT — 서울AI허브</title>
+  <meta name="description" content="서울시 · 서울AI허브(서울대학교 산업AI센터) × AITY — AI Native CEO 역량 구현 프로그램 강사 8인 OT 자료">
+  <meta property="og:title" content="AI Native CEO 강사 OT">
+  <meta property="og:description" content="48시간 / 16회차 / 8주 하이브리드 — 강사 8인용 AITY 운영 매뉴얼 + OT 슬라이드">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    :root {
+      --aity-primary: #7A5FFF;
+      --aity-primary-dark: #5C44D9;
+      --aity-primary-soft: #EFE9FF;
+      --aity-text: #1A1A1A;
+      --aity-muted: #5A5A66;
+    }
+    .reveal { font-family: "Pretendard", -apple-system, sans-serif; color: var(--aity-text); }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: "Pretendard", sans-serif;
+      letter-spacing: -0.02em;
+      color: var(--aity-text);
+      text-transform: none;
+    }
+    .reveal h1 { font-size: 2.4em; font-weight: 800; }
+    .reveal h2 { font-size: 1.7em; font-weight: 700; }
+    .reveal h3 { font-size: 1.2em; font-weight: 700; color: var(--aity-primary); }
+    .reveal section { text-align: left; }
+    .reveal section.center { text-align: center; }
+    .reveal a { color: var(--aity-primary); }
+    .reveal .badge {
+      display: inline-block;
+      padding: 0.3em 0.9em;
+      background: var(--aity-primary);
+      color: white;
+      border-radius: 999px;
+      font-size: 0.55em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      vertical-align: middle;
+      margin-bottom: 0.6em;
+    }
+    .reveal .muted { color: var(--aity-muted); }
+    .reveal ul { line-height: 1.5; }
+    .reveal ul li + li { margin-top: 0.4em; }
+    .reveal .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4em;
+      margin-top: 1em;
+    }
+    .reveal .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1em;
+    }
+    .reveal .card {
+      background: var(--aity-primary-soft);
+      border-radius: 12px;
+      padding: 1em 1.2em;
+      font-size: 0.85em;
+      line-height: 1.45;
+    }
+    .reveal .card strong { color: var(--aity-primary-dark); }
+    .reveal .pill {
+      display: inline-block;
+      padding: 0.2em 0.7em;
+      background: var(--aity-primary-soft);
+      color: var(--aity-primary-dark);
+      border-radius: 6px;
+      font-size: 0.7em;
+      margin: 0.15em 0.2em 0.15em 0;
+    }
+    .reveal .pill.green { background: #E2F1E8; color: #1F3D2C; }
+    .reveal .num-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 50%;
+      background: var(--aity-primary);
+      color: white;
+      font-size: 0.85em;
+      margin-right: 0.4em;
+      font-weight: 700;
+    }
+    .reveal table.compact { font-size: 0.65em; }
+    .reveal table.compact th { background: var(--aity-primary-soft); color: var(--aity-primary-dark); }
+    .reveal table.compact td, .reveal table.compact th { padding: 0.45em 0.7em; }
+    .reveal img.shot {
+      max-height: 480px;
+      border: 1px solid #E3DEF2;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    }
+    .reveal .step-bar {
+      display: flex;
+      gap: 0.4em;
+      margin-bottom: 0.8em;
+    }
+    .reveal .step-bar span {
+      flex: 1;
+      padding: 0.35em 0.6em;
+      background: #F1EEFF;
+      color: var(--aity-muted);
+      border-radius: 6px;
+      font-size: 0.55em;
+      text-align: center;
+    }
+    .reveal .step-bar span.active {
+      background: var(--aity-primary);
+      color: white;
+      font-weight: 700;
+    }
+    .reveal .session-card {
+      padding: 1em 1.2em;
+      background: var(--aity-primary-soft);
+      border-radius: 14px;
+      margin-bottom: 0.4em;
+    }
+    .reveal .session-card .meta {
+      font-size: 0.6em;
+      color: var(--aity-muted);
+      margin-bottom: 0.3em;
+    }
+    .reveal .session-card h2 { font-size: 1.3em; margin: 0 0 0.4em; }
+    .reveal .session-card .roles { font-size: 0.7em; }
+    .reveal .session-card .roles span {
+      background: white;
+      padding: 0.15em 0.55em;
+      border-radius: 4px;
+      margin: 0 0.2em 0.2em 0;
+      display: inline-block;
+    }
+    .reveal .footer-note {
+      position: absolute;
+      bottom: 12px;
+      left: 24px;
+      font-size: 0.5em;
+      color: var(--aity-muted);
+    }
+
+    /* Title slide background */
+    .title-slide {
+      background: linear-gradient(135deg, var(--aity-primary-soft) 0%, white 100%);
+    }
+
+    /* Print mode adjustments */
+    .reveal section.shot-only img.shot { max-height: 600px; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ========= 1. WELCOME ========= -->
+<section class="center title-slide">
+  <span class="badge">강사 8인 OT — 2026.04</span>
+  <h1>AI Native CEO<br><span style="color:var(--aity-primary)">강사 운영 OT</span></h1>
+  <p class="muted" style="font-size:0.9em;margin-top:1em">
+    서울시 · 서울AI허브(서울대학교 산업AI센터) × AITY<br>
+    <strong>AI 기반 1인 기업가 실전 운영·구현 역량 확보 프로그램</strong> · 48H · 16회차 · 8주
+  </p>
+</section>
+
+<section>
+  <h2>오늘 OT의 목적</h2>
+  <ul>
+    <li><strong>"누가 무엇을 어떻게"</strong> — 8인 강사진의 역할·일정·핸드오프 정렬</li>
+    <li><strong>AITY 플랫폼</strong> — 모듈/커리큘럼/클래스 흐름 + 수업 운영 방법</li>
+    <li><strong>운영 원칙</strong> — 녹화·출석·게시판·비상 대응 합의</li>
+    <li><strong>핸드오프</strong> — 인접 회차 강사 간 산출물·컨텍스트 인계 룰 합의</li>
+  </ul>
+  <div class="card" style="margin-top:1.5em">
+    이 사이트는 <strong>OT 이후에도 두고두고 보는 레퍼런스</strong>입니다. 우측 상단의
+    <em>매뉴얼 / 회차 / FAQ</em> 페이지가 OT 이후 강사 분들의 운영 안내서가 됩니다.
+  </div>
+</section>
+
+<!-- ========= 2. 프로젝트 개요 ========= -->
+<section class="center">
+  <span class="badge">PART 1</span>
+  <h1>프로젝트 개요</h1>
+  <p class="muted">왜 이 강의가, 누구를 위해, 어떻게 운영되는가</p>
+</section>
+
+<section>
+  <h2>운영 주체</h2>
+  <p class="muted" style="margin-top:0.4em;font-size:0.95em">
+    서울시의 <strong style="color:var(--aity-primary)">"서울AI허브"</strong>에서 진행하는 <strong>스타트업 육성 프로그램</strong>입니다.
+  </p>
+  <div class="grid-3" style="margin-top:1.5em">
+    <div class="card">
+      <strong>서울시</strong><br>
+      주관 · 스타트업 육성 사업
+    </div>
+    <div class="card">
+      <strong>서울AI허브 (서울대학교 산업AI센터)</strong><br>
+      위탁 운영 · 강의 기획·관리·모객
+    </div>
+    <div class="card">
+      <strong>AITY</strong><br>
+      온라인 LMS 플랫폼 제공 (aity.co.kr) · 강의 운영·녹화·출석 관리
+    </div>
+  </div>
+  <p class="muted" style="margin-top:1.5em;font-size:0.85em">
+    ※ 강사진은 서울AI허브가 위촉, 강의 운영은 AITY 플랫폼에서 진행됩니다.
+  </p>
+</section>
+
+<section>
+  <h2>강의의 핵심 컨셉</h2>
+  <p style="font-size:1.1em">
+    <strong style="color:var(--aity-primary)">"AI를 잘 쓰는 사람"</strong> 이 아니라
+    <strong style="color:var(--aity-primary)">"AI를 인력처럼 배치해 사업을 운영하는 사람"</strong> 으로의 전환
+  </p>
+  <div class="grid" style="margin-top:1.4em">
+    <div class="card">
+      <strong>BEFORE</strong><br>
+      "ChatGPT로 카피 좀 뽑아 봐야지"<br>
+      — 단발성 도구 사용
+    </div>
+    <div class="card" style="background:var(--aity-primary);color:white">
+      <strong style="color:white">AFTER</strong><br>
+      "리드 1차 분류는 마케터 AI, 회계 정리는 회계보조 AI에 맡긴다"<br>
+      — 인력 배치 사고
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>운영 구조 한눈에</h2>
+  <table class="compact" style="width:100%;margin-top:1em">
+    <tr><th>기간</th><td>2026-06-09(화) ~ 2026-07-31(금) · 총 8주</td></tr>
+    <tr><th>회차</th><td>16회차 · 총 48시간 (주 2회 운영)</td></tr>
+    <tr><th>온라인</th><td>화요일 19:00~21:00 (2H) — 개념 강의 · 사례 분석 · 실습 사전준비</td></tr>
+    <tr><th>오프라인</th><td>금요일 19:00~23:00 (4H) — 실습 · 워크숍 · 발표 · 산출물 완성</td></tr>
+    <tr><th>참가자</th><td>1인 기업가 · 스타트업 CEO · 프리랜서 · 퇴직 예정 교수·연구자</td></tr>
+    <tr><th>전제조건</th><td>Claude 유료 구독 · 노트북 실습 가능 · 생성형 AI 사용 경험</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>수강 대상 — 누구를 가르치는가</h2>
+  <h3 style="margin-top:0.8em">필수 조건</h3>
+  <ul style="font-size:0.9em">
+    <li>생성형 AI를 업무·프로젝트에 활용해 본 경험</li>
+    <li><strong>Claude 유료 구독</strong> · 노트북 기반 실습 가능</li>
+  </ul>
+  <h3>특히 추천 (둘 이상 해당)</h3>
+  <ul style="font-size:0.9em">
+    <li>1인 기업가 / 1인 연구소 / 프리랜서 / 퇴직 예정 교수·연구자</li>
+    <li>스타트업 CEO 또는 임원</li>
+    <li>"AI Workflow를 이해하고 조직을 효율화하고 싶은 CEO"</li>
+    <li>"AI 도구는 써봤지만 사업 운영 체계로 연결되지 않은 사람"</li>
+  </ul>
+</section>
+
+<section>
+  <h2>9가지 AI 역할 매트릭스</h2>
+  <table class="compact" style="width:100%">
+    <tr><td>🔎 <strong>리서처 AI</strong></td><td>시장조사·경쟁사·고객문제·검증 가설</td></tr>
+    <tr><td>📐 <strong>기획자 AI</strong></td><td>사업 구조화·오퍼·MVP 범위</td></tr>
+    <tr><td>📣 <strong>마케터 AI</strong></td><td>메시지·랜딩 카피·CTA·채널 변형</td></tr>
+    <tr><td>🗂 <strong>운영매니저 AI</strong></td><td>SOP·체크리스트·승인 지점</td></tr>
+    <tr><td>⚖️ <strong>법무·행정 AI</strong></td><td>계약·개인정보·증빙 (최종 판단은 전문가)</td></tr>
+    <tr><td>🧾 <strong>재무·회계 AI</strong></td><td>비용·증빙·기장 준비 (신고는 세무사)</td></tr>
+    <tr><td>👨‍💻 <strong>주니어 개발자 AI</strong></td><td>코드 초안·API·데이터 가공</td></tr>
+    <tr><td>🎯 <strong>프로덕트 매니저 AI</strong></td><td>요구사항·기능 분해·테스트</td></tr>
+    <tr><td>🔁 <strong>에이전트 오퍼레이터</strong></td><td>실행·로그·병렬 분담·후속 작업</td></tr>
+  </table>
+</section>
+
+<!-- ========= 3. 강사진 ========= -->
+<section class="center">
+  <span class="badge">PART 2</span>
+  <h1>강사진 8인 · 회차 매핑</h1>
+  <p class="muted">누가 어디서 무엇을 가르치는가</p>
+</section>
+
+<section>
+  <h2>8인 강사진</h2>
+  <table class="compact" style="width:100%;margin-top:0.6em">
+    <thead><tr><th>강사</th><th>담당</th><th>회차</th></tr></thead>
+    <tbody>
+      <tr><td>이현구</td><td>AI-First 사업 구조 · 시장조사·오퍼·브랜드</td><td>1·2회차 (1주)</td></tr>
+      <tr><td>이상수</td><td>법·행정·운영 체크리스트 · 회계·세무 보조</td><td>3·4회차 (2주)</td></tr>
+      <tr><td>권정선</td><td>마케팅 · 랜딩 · 콘텐츠 · 검증</td><td>5·6회차 (3주)</td></tr>
+      <tr><td>김민규</td><td>개발 기초 · Claude Code · Git/GitHub · API</td><td>7·8회차 (4주)</td></tr>
+      <tr><td>곽은철</td><td>Claude Code · MCP · Skills · SOP</td><td>9·10회차 (5주)</td></tr>
+      <tr><td>김주영</td><td>MVP 범위 · 작업 지시문 · 바이브 코딩</td><td>11·12회차 (6주)</td></tr>
+      <tr><td>박준</td><td>에이전트 · 병렬 운영 · MCP 연동 프로토타입</td><td>13·14회차 (7주)</td></tr>
+      <tr><td>진대연</td><td>Founder AI OS</td><td>15·16회차 (8주, 마지막)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>강사 간 핸드오프 원칙</h2>
+  <div class="grid">
+    <div class="card">
+      <strong>① 같은 강사 내 (온→오프)</strong><br>
+      온라인 회차에서 만든 <em>1차본·과제</em>를 오프라인 회차에서 완성. 강사가 직접 연결.
+    </div>
+    <div class="card">
+      <strong>② 다른 강사 간 (이전→다음)</strong><br>
+      마지막 회차의 <em>산출물·핸드오프 메모</em>를 다음 강사에게 게시판/슬랙으로 전달. 다음 강사는 첫 5분 안에 "지난 회차 요약"으로 시작.
+    </div>
+  </div>
+  <div class="callout" style="margin-top:1.2em;font-size:0.85em;padding:0.8em;background:var(--aity-primary-soft);border-radius:8px">
+    🔑 모든 회차의 핸드오프 메모는 <strong>공유된 노션 사이트의 매뉴얼 → 회차별 페이지</strong>에 사전 작성되어 있습니다.
+  </div>
+</section>
+
+<!-- ========= 4. 교육 목표 / 산출물 ========= -->
+<section class="center">
+  <span class="badge">PART 3</span>
+  <h1>교육 목표 · 산출물</h1>
+  <p class="muted">수강생이 8주 후 무엇을 가지고 나가는가</p>
+</section>
+
+<section>
+  <h2>9가지 핵심 교육 목표</h2>
+  <ol style="font-size:0.78em;line-height:1.5;column-count:1">
+    <li>AI를 활용한 <strong>1인 기업 운영 구조 설계</strong></li>
+    <li>대표 직접 / AI 위임 / 전문가 외주 <strong>3구분 기준</strong> 확보</li>
+    <li>비즈니스 핵심 기능을 AI와 <strong>역할 분담</strong> 하는 구조 내재화</li>
+    <li>법무·세무·행정·운영을 <strong>AI 기반 실무 보조 체계</strong> 로 정리</li>
+    <li>API·데이터·스크립트 이해 — <strong>기초 개발 문해력</strong></li>
+    <li>Claude Code 기반 <strong>반복 가능한 작업 스킬</strong> 설계</li>
+    <li>AI와 협업하는 <strong>미니 MVP 구현</strong> · 바이브 코딩</li>
+    <li>MCP 활용 — 자료·도구·문서를 연결하는 <strong>업무 실행형 AI 환경</strong></li>
+    <li>역할별 에이전트의 <strong>병렬 운영 모델</strong> 구축</li>
+  </ol>
+</section>
+
+<section>
+  <h2>최종 산출물 — Founder AI OS</h2>
+  <div class="grid">
+    <div class="card">
+      <strong>역할·운영 자산</strong>
+      <ul style="font-size:0.7em;margin-top:0.3em">
+        <li>AI 업무 분업도 + 분장표</li>
+        <li>법·행정·운영 체크리스트</li>
+        <li>SOP 3개 + 작업 지시 템플릿</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>마케팅·브랜드 자산</strong>
+      <ul style="font-size:0.7em;margin-top:0.3em">
+        <li>고객 문제 정의서 + 오퍼</li>
+        <li>브랜드 메시지 + 브랜드맵</li>
+        <li>랜딩 구조 + 검증 콘텐츠 패키지</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>구현·자동화 자산</strong>
+      <ul style="font-size:0.7em;margin-top:0.3em">
+        <li>Claude Code 환경 + GitHub repo</li>
+        <li>MCP 2개 + 재사용 스킬 3종</li>
+        <li>작동하는 미니 MVP 1개</li>
+      </ul>
+    </div>
+    <div class="card" style="background:var(--aity-primary);color:white">
+      <strong style="color:white">통합 OS</strong>
+      <ul style="font-size:0.7em;margin-top:0.3em">
+        <li>에이전트 구조도 + 역할 정의서</li>
+        <li>Founder AI OS 1차본</li>
+        <li><strong>90일 실행 로드맵</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========= 5. AITY Big Picture ========= -->
+<section class="center">
+  <span class="badge">PART 4</span>
+  <h1>AITY 플랫폼<br><span style="color:var(--aity-primary)">Big Picture</span></h1>
+  <p class="muted">aity.co.kr — 모듈 → 커리큘럼 → 클래스</p>
+</section>
+
+<section>
+  <h2>AITY는 어떤 구조인가</h2>
+  <div style="text-align:center;font-size:1.1em;padding:1.5em 0">
+    <span class="pill">📦 모듈</span>
+    <span style="margin:0 0.5em;color:var(--aity-muted)">→</span>
+    <span class="pill green">📚 커리큘럼</span>
+    <span style="margin:0 0.5em;color:var(--aity-muted)">→</span>
+    <span class="pill" style="background:var(--aity-primary);color:white">🎓 클래스</span>
+    <span style="margin:0 0.5em;color:var(--aity-muted)">→</span>
+    <span class="pill green">👥 수강생</span>
+  </div>
+  <ul style="font-size:0.9em">
+    <li><strong>모듈</strong>: 강사가 만든 학습 단위 (슬라이드·자료·실습 1세트)</li>
+    <li><strong>커리큘럼</strong>: 모듈을 묶어 만든 회차 구성 (예: AVPN 서울시 교육청 2기)</li>
+    <li><strong>클래스</strong>: 커리큘럼을 시간표·강사·수강생과 연결한 운영 단위</li>
+  </ul>
+  <p class="muted" style="font-size:0.8em;margin-top:1em">
+    이번 강의에서는 운영팀이 사전에 커리큘럼·클래스를 만들어 두고, 강사는 <strong>모듈 콘텐츠 업로드 + 수업 진행</strong> 에 집중합니다.
+  </p>
+</section>
+
+<section>
+  <h2>강사가 사용하는 4가지 핵심 기능</h2>
+  <div class="grid">
+    <div class="card"><strong>1. 멘토 대시보드</strong><br>오늘의 클래스 · 학생 진도 · 알림</div>
+    <div class="card"><strong>2. 수업 관리</strong><br>클래스 상세 · 커리큘럼 · 출석 · 녹화본</div>
+    <div class="card"><strong>3. Google Meet 입장</strong><br>한 번 클릭으로 자동 녹화 시작</div>
+    <div class="card"><strong>4. 게시판 / Q&A</strong><br>수강생과 비동기 소통 · 댓글</div>
+  </div>
+  <div class="callout" style="margin-top:1.4em;font-size:0.85em;padding:0.8em;background:var(--aity-primary-soft);border-radius:8px">
+    💡 강사 사이트 화면 우측 상단 토글이 <strong>"강사"</strong>로 되어 있는지 항상 먼저 확인하세요.
+  </div>
+</section>
+
+<!-- ========= 6. AITY ① 입장 ========= -->
+<section class="center">
+  <span class="badge">PART 5</span>
+  <h1>AITY 사용법 ①<br><span style="color:var(--aity-primary)">대시보드 입장</span></h1>
+  <p class="muted">aity.co.kr → 강사 토글 → 대시보드</p>
+</section>
+
+<section>
+  <div class="step-bar">
+    <span class="active">① 강사 토글</span>
+    <span>② 대시보드</span>
+    <span>③ 수업 관리</span>
+    <span>④ 클래스 상세</span>
+    <span>⑤ Meet 입장</span>
+  </div>
+  <h3>오른쪽 상단 토글이 "강사"인지 확인</h3>
+  <img class="shot" src="assets/images/manual/mentor-03.png" alt="강사 토글 확인">
+</section>
+
+<section>
+  <div class="step-bar">
+    <span>① 강사 토글</span>
+    <span class="active">② 대시보드</span>
+    <span>③ 수업 관리</span>
+    <span>④ 클래스 상세</span>
+    <span>⑤ Meet 입장</span>
+  </div>
+  <h3>멘토 대시보드 — 오늘의 클래스 / 빠른 작업</h3>
+  <img class="shot" src="assets/images/manual/mentor-05.png" alt="멘토 대시보드">
+</section>
+
+<section>
+  <div class="step-bar">
+    <span>① 강사 토글</span>
+    <span>② 대시보드</span>
+    <span class="active">③ 수업 관리</span>
+    <span>④ 클래스 상세</span>
+    <span>⑤ Meet 입장</span>
+  </div>
+  <h3>좌측 메뉴 → 수업 관리 클릭</h3>
+  <img class="shot" src="assets/images/manual/mentor-08.png" alt="수업 관리 → 클래스 목록">
+</section>
+
+<section>
+  <div class="step-bar">
+    <span>① 강사 토글</span>
+    <span>② 대시보드</span>
+    <span>③ 수업 관리</span>
+    <span class="active">④ 클래스 상세</span>
+    <span>⑤ Meet 입장</span>
+  </div>
+  <h3>오늘 진행할 클래스 → "상세보기"</h3>
+  <img class="shot" src="assets/images/manual/mentor-09.png" alt="클래스 상세 — 강사진 / 진행률 / Meet 입장">
+</section>
+
+<section>
+  <div class="step-bar">
+    <span>① 강사 토글</span>
+    <span>② 대시보드</span>
+    <span>③ 수업 관리</span>
+    <span>④ 클래스 상세</span>
+    <span class="active">⑤ Meet 입장</span>
+  </div>
+  <h3>오른쪽 상단 "Google Meet 입장" 클릭</h3>
+  <img class="shot" src="assets/images/manual/mentor-11.png" alt="Google Meet 입장">
+</section>
+
+<!-- ========= 7. AITY ② 수업 운영 ========= -->
+<section class="center">
+  <span class="badge">PART 6</span>
+  <h1>AITY 사용법 ②<br><span style="color:var(--aity-primary)">수업 운영 & 녹화</span></h1>
+  <p class="muted">자동 녹화 → 수업 진행 → 종료 절차</p>
+</section>
+
+<section>
+  <h3>입장 직후 — 녹화가 자동 활성화 되는지 확인</h3>
+  <img class="shot" src="assets/images/manual/mentor-13.png" alt="자동 녹화 + Gemini 회의록 알림">
+  <p class="muted" style="font-size:0.7em;margin-top:0.7em">
+    오른쪽 상단에 "녹화 중" 빨간 점이 표시되면 정상. Gemini 회의록 작성 권한도 함께 표시됩니다.
+  </p>
+</section>
+
+<section>
+  <h3>녹화 중 표시 확인</h3>
+  <img class="shot" src="assets/images/manual/mentor-14.png" alt="녹화 중 표시">
+</section>
+
+<section>
+  <h3>자동 녹화가 안 되는 경우 — 수동 녹화</h3>
+  <img class="shot" src="assets/images/manual/mentor-15.png" alt="수동 녹화 시작">
+  <p class="muted" style="font-size:0.7em;margin-top:0.7em">
+    더보기(⋮) → 녹화 시작 → "모든 참여자에게 실시간 스트리밍 알리기" 동의 → 녹화 시작.
+  </p>
+</section>
+
+<section style="background:#FFF3F0">
+  <h2 style="color:#C0392B">⚠️ 수업 종료 절차 — 이게 가장 중요합니다</h2>
+  <ol style="font-size:1.05em;line-height:1.7">
+    <li><strong>녹화를 먼저 중지</strong> (오른쪽 상단 "녹화 중" 클릭 → 중지)</li>
+    <li>"녹화 중지됨" 표시 확인</li>
+    <li>아래 빨간 통화 끊기 버튼 클릭</li>
+    <li>"<strong>모든 참여자를 내보내고 통화 종료</strong>" 선택 (← 그냥 나가기 ❌)</li>
+  </ol>
+  <div class="callout" style="margin-top:1em;background:#FFEBE5;color:#C0392B;padding:0.8em;border-radius:8px;font-size:0.85em">
+    🚫 녹화가 활성화된 상태에서는 "모든 참여자 내보내기" 버튼이 비활성화됩니다.
+  </div>
+</section>
+
+<section>
+  <h3>종료 단계 1 — 녹화 먼저 중지</h3>
+  <img class="shot" src="assets/images/manual/mentor-20.png" alt="수업 마치면 녹화 먼저 중지">
+</section>
+
+<section>
+  <h3>종료 단계 2 — 중지 버튼 클릭</h3>
+  <img class="shot" src="assets/images/manual/mentor-23.png" alt="녹화 중지">
+</section>
+
+<section>
+  <h3>종료 단계 3 — 모든 참여자 내보내고 통화 종료</h3>
+  <img class="shot" src="assets/images/manual/mentor-25.png" alt="모든 참여자 내보내고 종료">
+  <p class="muted" style="font-size:0.7em;margin-top:0.7em">
+    녹화본은 <strong>익일 오후</strong> 수강생 화면의 "녹화본" 탭에 자동 게시됩니다.
+  </p>
+</section>
+
+<!-- ========= 8. 수강생 관리 ========= -->
+<section class="center">
+  <span class="badge">PART 7</span>
+  <h1>AITY 사용법 ③<br><span style="color:var(--aity-primary)">수강생 화면 이해</span></h1>
+  <p class="muted">강사가 알아야 할 학생의 경험</p>
+</section>
+
+<section>
+  <h3>수강생도 같은 화면에서 커리큘럼 + 자료를 봅니다</h3>
+  <img class="shot" src="assets/images/manual/student-curriculum.png" alt="수강생 커리큘럼 탭">
+  <p class="muted" style="font-size:0.7em;margin-top:0.5em">
+    강사가 모듈에 업로드한 슬라이드·자료가 그대로 노출됩니다. 자료는 <strong>수업 시작 1일 전</strong>까지 업로드 권장.
+  </p>
+</section>
+
+<section>
+  <h3>회차별 모듈 구조 — 수강생 시각</h3>
+  <img class="shot" src="assets/images/manual/student-module.png" alt="모듈 안의 섹션">
+  <p class="muted" style="font-size:0.7em;margin-top:0.5em">
+    각 회차 안에 0교시 OT / 1교시 / 강의 전·후 읽기자료 / 실습 제출·설문 등 섹션이 분리되어 있습니다.
+  </p>
+</section>
+
+<section>
+  <h3>수강생의 출석률 = 수료 기준</h3>
+  <img class="shot" src="assets/images/manual/student-progress.png" alt="수강생 진도 탭">
+  <p class="muted" style="font-size:0.7em;margin-top:0.5em">
+    이번 강의의 수료 기준: <strong>출석률 70% 이상</strong>. 강사는 시작/종료 시간을 정확히 지키는 것이 곧 수강생의 수료 가부를 결정합니다.
+  </p>
+</section>
+
+<!-- ========= 9. 회차별 디테일 카드 ========= -->
+<section class="center">
+  <span class="badge">PART 8</span>
+  <h1>16회차 디테일</h1>
+  <p class="muted">회차별 강사 / 일자 / 산출물 / 핸드오프</p>
+</section>
+
+<!-- 16 Session cards (1 per slide) -->
+<section><div class="session-card"><div class="meta">1주차 · 1회차 · 2026-06-09(화) · 💻 온라인 2H · 이현구</div><h2>AI-First 사업 구조 설계</h2><div class="roles"><span>전략기획 매니저 AI</span><span>운영설계 매니저 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 내 사업 AI 역할맵 1차본<br><strong>과제</strong> 대표/AI/외주 업무 구분표<br><strong>다음 회차로</strong> 1차 역할맵을 갖고 한 줄 오퍼·브랜드 초안 작업의 기준점으로 사용</p></section>
+
+<section><div class="session-card"><div class="meta">1주차 · 2회차 · 2026-06-12(금) · 📕 오프라인 4H · 이현구</div><h2>AI 보안·윤리·한계 + 시장조사 + 오퍼 + 브랜드 메시지</h2><div class="roles"><span>시장조사 분석가 AI</span><span>상품기획자 AI</span><span>브랜드 전략가 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 1차 오퍼 문장 / 브랜드 메시지 초안 / 고객 문제 정의서 / AI 업무 분업도<br><strong>과제</strong> 시장조사 요약 시트 + 검증 가설 3개<br><strong>다음 회차로</strong> 분업도가 정리되어 있어야 어디까지 AI에 맡길지 결정 가능 → 이상수 강사</p></section>
+
+<section><div class="session-card"><div class="meta">2주차 · 3회차 · 2026-06-16(화) · 💻 온라인 2H · 이상수</div><h2>법·행정·운영 체크리스트</h2><div class="roles"><span>법무 비서 AI</span><span>회계·세무 준비 보조 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 법·행정·운영 체크리스트 1차본<br><strong>과제</strong> 변호사/세무사 상담 전 질문리스트<br><strong>다음 회차로</strong> 같은 강사가 실습으로 이어감 — 체크리스트 → SOP 초안</p></section>
+
+<section><div class="session-card"><div class="meta">2주차 · 4회차 · 2026-06-19(금) · 📕 오프라인 4H · 이상수</div><h2>법·행정·운영 체크리스트 실습</h2><div class="roles"><span>회계·세무 준비 보조 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 증빙·계좌·세무사 전달자료 체크리스트<br><strong>과제</strong> 자동화 가능 구간 맵 (AI 처리 vs 세무사 판단)<br><strong>다음 회차로</strong> 운영 기반 다져진 상태로 마케팅 단으로 이동 → 권정선 강사</p></section>
+
+<section><div class="session-card"><div class="meta">3주차 · 5회차 · 2026-06-23(화) · 💻 온라인 2H · 권정선</div><h2>마케팅 — 랜딩 기획 + 콘텐츠·검증</h2><div class="roles"><span>카피라이터 AI</span><span>콘텐츠 마케터 AI</span><span>퍼포먼스 마케팅 보조 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 브랜드 핵심 메시지 / 콘텐츠 마케팅 전략 노트<br><strong>과제</strong> 랜딩 구조 프레임 초안<br><strong>다음 회차로</strong> 같은 강사 실습 — 메시지 → 카피·콘텐츠로 발전</p></section>
+
+<section><div class="session-card"><div class="meta">3주차 · 6회차 · 2026-06-26(금) · 📕 오프라인 4H · 권정선</div><h2>마케팅 실습 — 랜딩 + 검증 콘텐츠 패키지</h2><div class="roles"><span>카피라이터 AI</span><span>콘텐츠 마케터 AI</span><span>퍼포먼스 마케팅 보조 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 브랜드맵 초안 / 랜딩 페이지 구조안 / 검증용 콘텐츠 패키지<br><strong>과제</strong> 브랜드 맵 완성<br><strong>다음 회차로</strong> 마케팅 자산까지 만들었으니 자동화·구현으로 → 김민규 강사</p></section>
+
+<section><div class="session-card"><div class="meta">4주차 · 7회차 · 2026-06-30(화) · 💻 온라인 2H · 김민규</div><h2>개발 기초 (API · 데이터 · 스크립트)</h2><div class="roles"><span>주니어 개발자 AI</span><span>데이터 정리 분석 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 데이터 분류표 / 자동화 가능 후보 리스트<br><strong>과제</strong> GitHub 가입<br><strong>다음 회차로</strong> 같은 강사 — Claude Code 환경 구축 + Git/GitHub 실습</p></section>
+
+<section><div class="session-card"><div class="meta">4주차 · 8회차 · 2026-07-03(금) · 📕 오프라인 4H · 김민규</div><h2>Claude Code 설치 + Git/GitHub + 데이터/API 실습</h2><div class="roles"><span>주니어 개발 실행 AI</span><span>자동화 구축 보조 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> Claude Code 환경 / GitHub 저장소 1개 / 데이터 구조 맵 / API 호출 흐름도<br><strong>과제</strong> 직접 작성한 스크립트 1개<br><strong>다음 회차로</strong> Claude Code 활용법 + MCP/Skills/SOP 심화 → 곽은철 강사</p></section>
+
+<section><div class="session-card"><div class="meta">5주차 · 9회차 · 2026-07-07(화) · 💻 온라인 2H · 곽은철</div><h2>Claude Code 활용법 + MCP/Skills/SOP 개념</h2><div class="roles"><span>AI 작업매니저</span><span>운영 프로세스 매니저 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> Skill / SOP 설계 틀 초안<br><strong>과제</strong> 업무 자동화 후보 리스트<br><strong>다음 회차로</strong> 같은 강사 — MCP 연결 + 스킬 설계 실습</p></section>
+
+<section><div class="session-card"><div class="meta">5주차 · 10회차 · 2026-07-10(금) · 📕 오프라인 4H · 곽은철</div><h2>MCP 연결 + 스킬 설계 + 반복업무 SOP</h2><div class="roles"><span>업무 표준화 매니저 AI</span><span>자동화 설계자 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> MCP 1개 연결 / 재사용 스킬 2종 / AI 작업 표준 문서<br><strong>과제</strong> SOP 1개 + 작업 지시 템플릿<br><strong>다음 회차로</strong> MVP 범위 설정·작업 지시문 설계 → 김주영 강사</p></section>
+
+<section><div class="session-card"><div class="meta">6주차 · 11회차 · 2026-07-14(화) · 💻 온라인 2H · 김주영</div><h2>MVP 범위 설정 + 작업 지시문 설계</h2><div class="roles"><span>프로덕트 매니저 AI</span><span>요구사항 명세 보조 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> MVP 기획서 1차본 / 기능 우선순위표<br><strong>과제</strong> 작업 지시문 템플릿<br><strong>다음 회차로</strong> 같은 강사 — 바이브 코딩 MVP 제작 실습</p></section>
+
+<section><div class="session-card"><div class="meta">6주차 · 12회차 · 2026-07-17(금) · 📕 오프라인 4H · 김주영</div><h2>바이브 코딩 MVP 제작 + 중간 피드백</h2><div class="roles"><span>주니어 개발자 AI</span><span>QA 테스터 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 작동 MVP 1개 / 기능 개선 목록 / GitHub 저장 / QA 체크리스트<br><strong>과제</strong> 자동화 후보 포인트 + MVP 완성<br><strong>다음 회차로</strong> 에이전트 개념·병렬 운영 구조 → 박준 강사</p></section>
+
+<section><div class="session-card"><div class="meta">7주차 · 13회차 · 2026-07-21(화) · 💻 온라인 2H · 박준</div><h2>에이전트 개념 + 병렬 운영 구조</h2><div class="roles"><span>에이전트 설계자 AI</span><span>AI 운영 오퍼레이터</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 에이전트 후보 역할표<br><strong>과제</strong> 승인권자 원칙 문서 초안<br><strong>다음 회차로</strong> 같은 강사 — 에이전트 설계·MCP 연동 프로토타입</p></section>
+
+<section><div class="session-card"><div class="meta">7주차 · 14회차 · 2026-07-24(금) · 📕 오프라인 4H · 박준</div><h2>에이전트 설계 (3개 병렬연결) + MCP 연동</h2><div class="roles"><span>에이전트 운영자 AI</span><span>실행관리 매니저 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> 병렬 운영 체크리스트 / 에이전트 구조도 / 프로토타입(3개 병렬)<br><strong>과제</strong> 병렬 운영 체크리스트<br><strong>다음 회차로</strong> Founder AI OS 통합 → 진대연 강사</p></section>
+
+<section><div class="session-card"><div class="meta">8주차 · 15회차 · 2026-07-28(화) · 💻 온라인 2H · 진대연</div><h2>Founder AI OS 구조화</h2><div class="roles"><span>Founder AI OS 설계자</span><span>의사결정 보조 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> Founder AI OS 설계도 초안<br><strong>과제</strong> 90일 실행 우선순위표<br><strong>다음 회차로</strong> 같은 강사가 마지막 회차에서 완성 + 발표 코칭</p></section>
+
+<section><div class="session-card" style="background:linear-gradient(135deg, var(--aity-primary) 0%, var(--aity-primary-dark) 100%);color:white"><div class="meta" style="color:rgba(255,255,255,0.85)">8주차 · 16회차 · 2026-07-31(금) · 📕 오프라인 4H · 진대연</div><h2 style="color:white">🎓 Founder AI OS 완성 + 발표·코칭</h2><div class="roles" style="color:white"><span style="background:rgba(255,255,255,0.25);color:white">AI 운영총괄 매니저</span><span style="background:rgba(255,255,255,0.25);color:white">실행 로드맵 코치 AI</span></div></div><p style="font-size:0.7em"><strong>산출물</strong> Founder AI OS 1차 완성본 / 90일 실행 로드맵 / 첫 1주 액션 리스트<br><strong>핸드오프</strong> 수료 — 수강생은 곧바로 실행 모드로 진입</p></section>
+
+<!-- ========= 10. 운영 가이드 ========= -->
+<section class="center">
+  <span class="badge">PART 9</span>
+  <h1>운영 가이드</h1>
+  <p class="muted">사전 준비 → 수업 중 → 수업 후</p>
+</section>
+
+<section>
+  <h2>수업 30분 전 — 사전 준비 체크리스트</h2>
+  <ul style="font-size:0.95em">
+    <li>✅ aity.co.kr 로그인 + 우측 상단 토글이 <strong>"강사"</strong>인지 확인</li>
+    <li>✅ 멘토 대시보드 → 수업 관리 → 오늘 클래스 "상세보기"</li>
+    <li>✅ 모듈 자료(슬라이드/실습) 업로드 완료 확인</li>
+    <li>✅ Google Meet 입장 → 자동 녹화 확인 → 사전 음성·화면 테스트</li>
+    <li>✅ 게시판에 사전 안내 글 (선택) — 늦게 올 수강생을 위한 회차 요약</li>
+  </ul>
+</section>
+
+<section>
+  <h2>수업 중 — 운영 원칙 5가지</h2>
+  <ol style="font-size:0.95em">
+    <li><strong>시작·종료 시간 정확히 준수</strong> (출석률이 곧 수료 기준)</li>
+    <li><strong>녹화 상태 항상 확인</strong> — 시작·중간·종료 3회 시각적 체크</li>
+    <li><strong>채팅 + 입말 Q&A 병행</strong> — 채팅 질문은 큰 소리로 다시 읽고 답변</li>
+    <li><strong>실습 중간점검 30분 간격</strong> — 막힌 수강생 1:1 음소거 해제 안내</li>
+    <li><strong>마지막 5분 핸드오프 메모</strong> — "다음 회차에서 무엇을 가져오는지" 발표</li>
+  </ol>
+</section>
+
+<section>
+  <h2>수업 종료 후 — 강사 액션</h2>
+  <ul style="font-size:0.95em">
+    <li><strong>당일 24시간 내</strong>: 게시판 미답변 질문 코멘트</li>
+    <li><strong>D+1 오후</strong>: 녹화본 자동 게시 확인 (수강생이 볼 수 있는 상태)</li>
+    <li><strong>다음 회차 강사에게 핸드오프 메모 전달</strong>: "지난 회차 산출물 + 미진한 부분"</li>
+    <li><strong>운영진 단톡방</strong>에 "회차 종료" 한 줄 보고</li>
+  </ul>
+</section>
+
+<section>
+  <h3>입장 시 본인 계정 확인 — Google Meet 우측 상단</h3>
+  <img class="shot" src="assets/images/manual/meet-account-switch.png" alt="Google Meet 계정 확인 — Switch account">
+  <p class="muted" style="font-size:0.7em;margin-top:0.7em">
+    Meet 입장 화면 <strong>우측 상단 이메일</strong>이 본인 계정인지 항상 확인. 다른 기기에서 통화 중이면 <strong>"Switch here"</strong> 로 디바이스 전환. 신청 시와 다른 계정으로 입장하면 승인 요청 알림이 발생합니다.
+  </p>
+</section>
+
+<section>
+  <h2>비상 상황 5가지 + 즉시 대응</h2>
+  <table class="compact" style="width:100%;font-size:0.78em">
+    <tr><th>상황</th><th>대응</th></tr>
+    <tr><td>녹화 자동 시작 안 됨</td><td>더보기(⋮) → 녹화 시작 → "스트리밍 알리기" 동의</td></tr>
+    <tr><td>수강생 입장 시 승인 요청 알림</td><td>수강생 신청 구글계정 ≠ Meet 입장 계정 → 운영진 호출</td></tr>
+    <tr><td>화면 공유 안 됨</td><td>브라우저 권한 → "이 사이트의 화면 녹화 허용" 후 새로고침</td></tr>
+    <tr><td>오디오 끊김·울림</td><td>마이크/스피커 매칭 → 헤드셋 사용 권장 (기본)</td></tr>
+    <tr><td>강사 본인 입장 못 함</td><td>운영진 핫라인 → 임시 운영자가 Meet 시작 → 강사 일반 게스트로 입장</td></tr>
+  </table>
+</section>
+
+<!-- ========= 11. FAQ + 연락처 ========= -->
+<section>
+  <h2>자주 묻는 질문</h2>
+  <ul style="font-size:0.85em">
+    <li><strong>Q. 수업 시간 외 수강생 메시지에 응답 의무?</strong> → 게시판 24시간 내 1회 코멘트 권장. 1:1 카톡/메일 응대는 강사 재량.</li>
+    <li><strong>Q. 강의 자료를 PPT로 가져가도 되나?</strong> → 가능. AITY 모듈에는 Google 슬라이드 또는 PDF 링크 임베드 권장.</li>
+    <li><strong>Q. 수강생이 결석하면?</strong> → 녹화본 익일 오후 게시. 출석률 70% 미만 시 수료 불가 — 강사가 별도 보충 의무는 없음.</li>
+    <li><strong>Q. 강의 변경·연기?</strong> → 운영진과 최소 D-3 사전 협의. 수강생 공지는 운영진이 담당.</li>
+    <li><strong>Q. 강사료 정산은?</strong> → 별도 계약서 기준 — 운영진이 안내.</li>
+  </ul>
+  <p class="muted" style="font-size:0.7em;margin-top:1em">전체 FAQ는 매뉴얼 → FAQ 페이지에서 확인하세요.</p>
+</section>
+
+<!-- ========= 12. CLOSING ========= -->
+<section class="center title-slide">
+  <span class="badge">CLOSING</span>
+  <h1>함께 만들어가는<br><span style="color:var(--aity-primary)">AI Native CEO</span> 프로그램</h1>
+  <p class="muted" style="margin-top:1em;font-size:0.9em">
+    8명의 강사 · 16회차 · 48시간<br>
+    수강생이 "AI를 인력처럼 배치할 수 있는 사람"으로 졸업하도록 함께 설계해주세요.
+  </p>
+  <p style="margin-top:2.5em;font-size:0.7em" class="muted">
+    🌐 jkwon-startup.github.io/aity-ceo-ot &nbsp;·&nbsp; © 2026 서울시 · 서울AI허브 × AITY
+  </p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: "c/t",
+    progress: true,
+    transition: "slide",
+    width: 1280,
+    height: 800,
+    margin: 0.06,
+    controlsTutorial: false,
+    pdfSeparateFragments: false
+  });
+</script>
+</body>
+</html>

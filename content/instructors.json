@@ -1,0 +1,68 @@
+{
+  "instructors": [
+    {
+      "id": "lee-hyungoo",
+      "name": "이현구",
+      "role": "전략기획·운영설계",
+      "sessions": [1, 2],
+      "bio": "AI-First 사업 구조 설계 및 시장조사·오퍼·브랜드 메시지 영역 담당. 1주차 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    },
+    {
+      "id": "lee-sangsoo",
+      "name": "이상수",
+      "role": "법무·회계·세무 보조 AI",
+      "sessions": [3, 4],
+      "bio": "법·행정·운영 체크리스트와 전문가 상담 효율화 실습 담당. 2주차 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    },
+    {
+      "id": "kwon-jungsun",
+      "name": "권정선",
+      "role": "마케팅·브랜드·콘텐츠",
+      "sessions": [5, 6],
+      "bio": "랜딩 기획·콘텐츠·검증 마케팅 담당. TS²/AITY 대표, AI 트레이너, AVPN 트레이너. 3주차 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    },
+    {
+      "id": "kim-mingyu",
+      "name": "김민규",
+      "role": "개발 기초·Claude Code 환경",
+      "sessions": [7, 8],
+      "bio": "API·데이터·스크립트 기초 + Claude Code 설치, Git/GitHub, 데이터·API 실습 담당. 4주차 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    },
+    {
+      "id": "kwak-eunchul",
+      "name": "곽은철",
+      "role": "Claude Code·MCP·SOP",
+      "sessions": [9, 10],
+      "bio": "Claude Code 활용법, MCP/Skills/SOP 설계, 반복업무 표준화 실습 담당. 5주차 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    },
+    {
+      "id": "kim-juyoung",
+      "name": "김주영",
+      "role": "MVP·바이브 코딩",
+      "sessions": [11, 12],
+      "bio": "MVP 범위 설정·작업 지시문 설계 + 바이브 코딩 MVP 제작 실습 담당. 6주차 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    },
+    {
+      "id": "park-jun",
+      "name": "박준",
+      "role": "에이전트·병렬 운영",
+      "sessions": [13, 14],
+      "bio": "에이전트 개념·병렬 운영 구조 + 에이전트 설계·MCP 연동 프로토타입 실습 담당. 7주차 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    },
+    {
+      "id": "jin-daeyeon",
+      "name": "진대연",
+      "role": "Founder AI OS·실행 로드맵",
+      "sessions": [15, 16],
+      "bio": "Founder AI OS 구조화 + 90일 실행계획 발표·코칭 담당. 8주차(마지막) 두 회차 모두 진행.",
+      "color": "#7A5FFF"
+    }
+  ]
+}
