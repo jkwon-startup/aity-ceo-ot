@@ -30,7 +30,7 @@ const COLORS = {
 // ───────────────────────── ENTRY POINT ─────────────────────────
 function buildOT() {
   const pres = SlidesApp.openById(PRESENTATION_ID);
-  pres.setPageSize(SlidesApp.PageSize.WIDESCREEN_16_9);
+  // Slides 의 페이지 크기는 코드로 직접 변경 불가. 16:9 widescreen 으로 가정 (720x405 PT).
 
   // Clear existing slides
   const existing = pres.getSlides();
@@ -183,13 +183,18 @@ function buildOT() {
 }
 
 // ───────────────────────── HELPERS ─────────────────────────
+// builder 코드는 logical 960x540 좌표를 사용한다.
+// Slides 의 실제 16:9 widescreen 페이지는 720x405 PT 이므로 helper 에서 SCALE 로 자동 변환.
+const W = 960, H = 540;       // logical
+const SCALE = 720 / 960;       // physical / logical = 0.75
+
 function setBg(slide, hex) {
   slide.getBackground().setSolidFill(hex);
 }
 
 function txt(slide, x, y, w, h, str, opts) {
   opts = opts || {};
-  const tb = slide.insertTextBox(str || '', x, y, w, h);
+  const tb = slide.insertTextBox(str || '', x * SCALE, y * SCALE, w * SCALE, h * SCALE);
   const tf = tb.getText();
   tf.getTextStyle()
     .setFontFamily(opts.font || 'Pretendard')
@@ -204,7 +209,7 @@ function txt(slide, x, y, w, h, str, opts) {
 
 function rect(slide, x, y, w, h, fill, opts) {
   opts = opts || {};
-  const r = slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE, x, y, w, h);
+  const r = slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE, x * SCALE, y * SCALE, w * SCALE, h * SCALE);
   r.getFill().setSolidFill(fill);
   r.getBorder().setTransparent();
   return r;
@@ -212,7 +217,7 @@ function rect(slide, x, y, w, h, fill, opts) {
 
 function rectWithText(slide, x, y, w, h, fill, str, opts) {
   opts = opts || {};
-  const r = slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE, x, y, w, h);
+  const r = slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE, x * SCALE, y * SCALE, w * SCALE, h * SCALE);
   r.getFill().setSolidFill(fill);
   r.getBorder().setTransparent();
   const tx = r.getText();
@@ -236,14 +241,10 @@ function badge(slide, cx, y, str, w) {
 
 function addPageNumber(slide, n, total) {
   if (n === 1) return; // skip on title slide
-  txt(slide, 850, 530, 90, 18, n + ' / ' + total, {
+  txt(slide, 850, 525, 100, 18, n + ' / ' + total, {
     size: 8, color: COLORS.muted, align: SlidesApp.ParagraphAlignment.END
   });
 }
-
-// Title style: width 960, height 540 (16:9 widescreen, default Slides API points: 720x405 actually)
-// Actually Slides default 16:9 is 960x540 EMU points
-const W = 960, H = 540;
 
 // ───────────────────────── SLIDE BUILDERS ─────────────────────────
 function buildWelcome(slide) {
@@ -515,18 +516,18 @@ function buildShot(slide, title, imgFile, caption) {
   try {
     const url = IMG_BASE + imgFile;
     const img = slide.insertImage(url);
-    // Resize image to fit. Default insertion is large.
-    const maxW = 760;
-    const maxH = 360;
+    // 이미지 크기·위치는 PT 단위. Slides 페이지가 720x405 PT 이므로 SCALE 적용.
+    const maxWPt = 760 * SCALE;   // 약 570 PT
+    const maxHPt = 360 * SCALE;   // 약 270 PT
     const iw = img.getWidth();
     const ih = img.getHeight();
-    const scale = Math.min(maxW / iw, maxH / ih);
-    const nw = iw * scale;
-    const nh = ih * scale;
+    const fit = Math.min(maxWPt / iw, maxHPt / ih, 1);
+    const nw = iw * fit;
+    const nh = ih * fit;
     img.setWidth(nw);
     img.setHeight(nh);
-    img.setLeft((W - nw) / 2);
-    img.setTop(70);
+    img.setLeft((W * SCALE - nw) / 2);
+    img.setTop(70 * SCALE);
   } catch (e) {
     txt(slide, 50, 200, W - 100, 50, '[이미지 로드 실패: ' + imgFile + ']', {
       size: 12, color: COLORS.red
